@@ -1,0 +1,246 @@
+/* created by edenilsonlr https://github.com/Edenilson-LR/Anki-Templates */
+/* pink.css — réplica UI rosa Penpot (MODO CLARO Page 1) */
+/* Tarjeta 443x781 #C31B59 radius 20px | Campos 345x102/352x115 #DB5151 radius 10px | URL 342x32 #E3C2C2 radius 10px | Texto #FFFFFF Source Sans Pro 20px/1.2 (front 40-48px) | Play Ellipse #D9D9D9 + icon #C31B59 | Noche #5E1631 */
+
+:root {
+  --pink-primary: #C31B59;
+  --pink-field: #DB5151;
+  --pink-url-bg: #E3C2C2;
+  --pink-url-text: #5E1631;
+  --pink-text: #FFFFFF;
+  --pink-play-bg: #D9D9D9;
+  --pink-play-icon: #C31B59;
+  --pink-page-bg: #FADBD8;
+  --pink-night-bg: #1A1A1A;
+  --pink-night-card: #5E1631;
+  --pink-chn-nightc:#d4739c;
+  --pink-font: 'Source Sans Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  background: var(--pink-page-bg);
+  font-family: var(--pink-font);
+  font-size: 16px;
+  line-height: 1.2;
+  padding: 15px;
+  min-height: 100vh;
+  color: var(--pink-text);
+}
+
+/* Contenedor */
+.flashcard {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* FRONT — front.html: .flashcard > .front > {{Expresion}} {{IPA}} + .Audio>{{Audio}} */
+/* Diseño: Rectangle 708x413 #C31B59, Expresion 40px + IPA 48px blanco centrado, Ellipse 87x83 #D9D9D9 izquierda */
+.front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 28px 25px;
+  background-color: var(--pink-primary);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(195, 27, 89, 0.35);
+  min-height: 140px;
+  color: var(--pink-text);
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Botón a la izquierda como en Penpot aunque en el HTML va al final */
+.front .Audio {
+  order: -1;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+/* BACK — back.html: Expresion + .ipa + Audio + hr + Definicion + hr + Imagen + hr + Oracion + hr + Audio Oracion + hr + Nota + hr + .url */
+/* Diseño: fondo #C31B59 radius 20px, campos #DB5151 radius 10px, imagen 345x225, gap ~15px */
+.back {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 25px;
+  background-color: var(--pink-primary);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(195, 27, 89, 0.35);
+  min-height: 300px;
+  color: var(--pink-text);
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.ipa {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.92;
+  margin: 0;
+}
+
+/* hr del HTML original no existe en Penpot: ocultar y usar gap */
+hr {
+  display: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Imagen — Back Clover 345x225 cover */
+.back img,
+.flashcard img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 345 / 225;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 4px auto;
+}
+
+/* URL — pill #E3C2C2 radius 10px, texto #5E1631 para contraste (en diseño #FFFFFF) */
+.url {
+  background-color: var(--pink-url-bg);
+  border-radius: 10px;
+  color: var(--pink-url-text);
+  font-size: 12px;
+  font-weight: 400;
+  padding: 6px 10px;
+  margin-top: 4px;
+  word-break: break-all;
+}
+
+.url a {
+  color: var(--pink-url-text);
+  text-decoration: underline;
+}
+
+/* Botones de audio — Ellipse #D9D9D9 con triángulo #C31B59 */
+.replay-button,
+.soundLink,
+.Audio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+a.replay-button,
+.replay-button {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  min-height: 45px;
+  border-radius: 50%;
+  background-color: var(--pink-play-bg);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.replay-button:hover {
+  transform: scale(1.1);
+  background-color: #E6E6E6;
+}
+
+.replay-button:active {
+  transform: scale(0.95);
+}
+
+.replay-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.replay-button svg circle {
+  display: none;
+}
+
+.replay-button svg path {
+  fill: var(--pink-play-icon);
+  stroke: var(--pink-play-icon);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* NIGHT MODE — MODO NOCHE Penpot: fondo tarjeta #5E1631 */
+.nightMode .card {
+  background: var(--pink-night-bg);
+}
+
+.nightMode .front,
+.nightMode .back {
+  background-color: var(--pink-night-card);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  color: var(--pink-field);
+}
+
+.nightMode .chn_sent {
+    color: var(--pink-chn-nightc);
+}
+
+.nightMode span.chn_tran {
+    color: var(--pink-chn-nightc);
+}
+
+.nightMode .url {
+  background-color: var(--pink-url-bg);
+}
+
+.nightMode .url,
+.nightMode .url a {
+  color: var(--pink-url-text);
+}
+
+/* Responsive */
+@media only screen and (max-width: 600px) {
+  .card {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .flashcard {
+    max-width: 95vw;
+  }
+
+  .front {
+    padding: 22px 18px;
+    min-height: 120px;
+    font-size: 18px;
+  }
+
+  .back {
+    padding: 20px;
+    min-height: auto;
+    font-size: 16px;
+  }
+
+  .back img,
+  .flashcard img {
+    max-width: 100%;
+  }
+
+  a.replay-button,
+  .replay-button {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .replay-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
