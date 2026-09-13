@@ -1,0 +1,236 @@
+/* created by edenilsonlr https://github.com/Edenilson-LR/Anki-Templates */
+/* Diseño turquesa claro/oscuro para Ankimine (campos planos) */
+
+:root {
+  --turquesa-primary: #40E0D0;
+  --turquesa-dark: #20B2AA;
+  --turquesa-field: #00796B;
+  --background-light: #F7FEFD;
+  --text-dark: #06302B;
+  --night-bg: #0B2424;
+  --night-card: #123636;
+  --night-text: #B2F0E8;
+}
+
+.card {
+  background: var(--background-light);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  color: var(--text-dark);
+  padding: 15px;
+  min-height: 100vh;
+}
+
+.flashcard {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* FRONT SIDE */
+.front {
+  display: flex;
+  align-items: center;
+  padding: 20px 25px;
+  background-color: var(--turquesa-primary);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(32, 178, 170, 0.35);
+  min-height: 80px;
+  gap: 15px;
+}
+
+.front > *:not(.replay-button):not(.Audio) {
+  color: var(--text-dark);
+  font-size: 18px;
+  font-weight: 500;
+  flex: 1;
+  margin: 0;
+}
+
+.front .Audio {
+  flex-shrink: 0;
+}
+
+/* BACK SIDE */
+.back {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background-color: var(--turquesa-primary);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(32, 178, 170, 0.35);
+  min-height: 500px;
+  gap: 15px;
+}
+
+.back > *:first-child {
+  color: var(--text-dark);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.back .ipa {
+  color: var(--text-dark);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Extensión: información ligada al campo {{Definicion}} */
+.card span.chn_sent {
+  color: var(--turquesa-field) !important;
+}
+
+.card span.chn_tran {
+  color: #0d47a1 !important;
+}
+
+.card span.chn_sent *,
+.card span.chn_tran * {
+  color: inherit !important;
+}
+
+/* Separadores */
+hr {
+  border: none;
+  border-bottom: 1px solid var(--turquesa-dark);
+  margin: 0;
+  padding: 0;
+}
+
+/* Imagen */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* URL */
+.back .url {
+  color: var(--text-dark);
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.back .url a {
+  color: var(--text-dark);
+  text-decoration: underline;
+}
+
+/* Botones de audio */
+.replay-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.replay-button:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.replay-button:active {
+  transform: scale(0.95);
+}
+
+.replay-button svg {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-40%, -50%);
+}
+
+.replay-button svg circle {
+  display: none;
+}
+
+.replay-button svg path {
+  fill: #FFFFFF;
+  transform: none;
+}
+
+.Audio {
+  display: inline-block;
+}
+
+/* NIGHT MODE */
+.nightMode .card {
+  background: var(--night-bg);
+}
+
+.nightMode .flashcard {
+  box-shadow: 0 4px 12px rgba(11, 36, 36, 0.6);
+}
+
+.nightMode .front,
+.nightMode .back {
+  background-color: var(--night-card);
+  box-shadow: 0 4px 12px rgba(11, 36, 36, 0.6);
+}
+
+.nightMode .front > *:not(.replay-button):not(.Audio),
+.nightMode .back > *:first-child,
+.nightMode .back .ipa {
+  color: var(--night-text);
+}
+
+.nightMode span.chn_sent {
+  color: var(--turquesa-field) !important;
+}
+
+.nightMode span.chn_tran {
+  color: #0d47a1 !important;
+}
+
+.nightMode hr {
+  border-bottom: 1px solid var(--turquesa-dark);
+}
+
+.nightMode .back .url,
+.nightMode .back .url a {
+  color: var(--night-text);
+}
+
+/* Responsive */
+@media only screen and (max-width: 600px) {
+  .card {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .flashcard {
+    max-width: 95vw;
+  }
+
+  .front {
+    padding: 15px 20px;
+    min-height: 70px;
+  }
+
+  .back {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .replay-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .replay-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
