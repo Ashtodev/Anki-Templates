@@ -1,10 +1,3 @@
-/* created by edenilsonlr https://github.com/Edenilson-LR/Anki-Templates */
-/* AnkiMine · Liquid Glass — CSS puro, sin dependencias.
-   Tokens espejo del sistema de diseño Penpot (Glass/light · Glass/dark).
-   Página sólida con el color por defecto de Anki; el vidrio vive solo en
-   la tarjeta (sin backdrop-filter ni gradientes) para evitar parpadeos.
-   Compatible con front.html / back.html sin modificarlos. */
-
 :root {
   /* Material · Glass/light */
   --glass-bg: rgba(244, 247, 250, 0.88);
@@ -25,10 +18,10 @@
   --glass-learned: #0E7C74;
   --glass-target: #7A5CB8;
 
-  /* Lienzo (color por defecto de Anki) */
+  /* default color Anki */
   --glass-page: #FFFFFF;
 
-  /* Compatibilidad con el sistema AnkiMine */
+  /* Compatible with Ankimine system */
   --text--color: #1A1D21;
   --stroke--color: #B9A7D9;
   --night--card: #1B1A2E;
@@ -43,9 +36,6 @@
   box-sizing: border-box;
 }
 
-/* Lienzo sólido: el vidrio vive solo en la tarjeta.
-   body comparte el color de la tarjeta y, al no definir fondo en html,
-   ese color se propaga al lienzo completo del webview (sin parpadeos). */
 body {
   margin: 0;
   background-color: var(--glass-page);
@@ -65,9 +55,7 @@ body {
   margin: 0 auto;
 }
 
-/* Material Liquid Glass compartido.
-   Fondo plano (sin gradientes) para que el webview no repinte al hacer
-   scroll; el efecto vidrio lo dan el tinte, el borde y la sombra. */
+   /* Flat background, to avoid scroll flashing */
 .front,
 .back {
   position: relative;
@@ -79,7 +67,7 @@ body {
     inset 0 1px 0 var(--glass-highlight);
 }
 
-/* FRONT · palabra + IPA + audio */
+/* FRONT */
 .front {
   display: flex;
   align-items: center;
@@ -106,7 +94,7 @@ body {
   color: var(--glass-text-secondary);
 }
 
-/* BACK · palabra, traducción, imagen, oración, nota y url */
+/* BACK */
 .back {
   display: block;
   padding: 24px;
@@ -115,7 +103,7 @@ body {
   color: var(--glass-text);
 }
 
-/* Palabra principal: primera línea del reverso */
+/* Principal word, firts line on the verse */
 .back::first-line {
   font-size: 32px;
   font-weight: 700;
@@ -131,13 +119,12 @@ body {
   color: var(--glass-text-secondary);
 }
 
-/* Audio del reverso */
+/* Audio back */
 .back .Audio,
 .back .replay-button {
   margin: 4px 0;
 }
 
-/* Separadores como luz tenue, no como líneas duras */
 hr {
   border: none;
   height: 1px;
@@ -145,7 +132,7 @@ hr {
   background: var(--glass-border);
 }
 
-/* Imagen como ventana de vidrio */
+/* Image */
 .back img,
 .front img {
   display: block;
@@ -157,13 +144,13 @@ hr {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
 }
 
-/* Traducción de la palabra (extensión → {{Definicion}}) */
+/* Translation (plugin ankimine → {{Definicion}}) */
 .card span.chn_tran {
   color: var(--glass-accent) !important;
   font-weight: 600;
 }
 
-/* Traducción de la oración */
+/* Sentence translation (plugin ankimine) */
 .card span.chn_sent {
   color: var(--glass-text-secondary) !important;
   font-style: italic;
@@ -174,7 +161,7 @@ hr {
   color: inherit !important;
 }
 
-/* Resaltados del sistema AnkiMine */
+/* Highlight AnkiMine system */
 .back b,
 .back strong {
   color: var(--glass-accent);
@@ -212,7 +199,7 @@ hr {
   color: var(--glass-text-secondary);
 }
 
-/* URL / diccionario */
+/* URL / dictionary */
 .back .url {
   margin-top: 16px;
   font-size: 12px;
@@ -227,7 +214,7 @@ hr {
   border-bottom: 1px solid currentColor;
 }
 
-/* Botón de audio: pieza de vidrio integrada */
+/* Audio Buttom */
 .replay-button {
   position: relative;
   display: inline-flex;

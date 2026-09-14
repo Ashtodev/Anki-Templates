@@ -1,18 +1,8 @@
-/* created by edenilsonlr https://github.com/Edenilson-LR/Anki-Templates */
-/* AnkiMine · Liquid Glass 2 — CSS puro, sin dependencias.
-   Compatible con front.html / back.html sin modificarlos.
-
-   Fondo sólido: claro #855387 · oscuro #463551.
-   El vidrio vive solo en la tarjeta y se recrea con relleno translúcido +
-   un único brillo estático (sin backdrop-filter, que es lo que provocaba
-   parpadeos). La tarjeta se promueve a su propia capa para que el webview
-   de Anki no la repinte al hacer scroll. */
-
 :root {
-  /* Lienzo sólido */
+  /* Solid */
   --glass-page: #855387;
 
-  /* Material · Glass/light (tarjeta oscura para que el texto blanco resalte) */
+  /* Material · Glass/light (dark card so the white text stands out) */
   --glass-bg: rgba(255, 255, 255, 0.12);
   --glass-bg-secondary: rgba(255, 255, 255, 0.10);
   --glass-sheen: rgba(255, 255, 255, 0.10);
@@ -23,7 +13,7 @@
   --glass-radius-panel: 14px;
   --glass-radius-pill: 999px;
 
-  /* Texto y acentos */
+/* Text and accents */
   --glass-text: #FFFFFF;
   --glass-text-secondary: #F0DFF5;
   --glass-accent: #A9F5EC;
@@ -32,7 +22,7 @@
   --glass-learned: #A9F5EC;
   --glass-target: #E7D2FF;
 
-  /* Compatibilidad con el sistema AnkiMine */
+/* Compatibility with the AnkiMine system */
   --text--color: #FFFFFF;
   --stroke--color: #E3D0F2;
   --night--card: #463551;
@@ -47,8 +37,6 @@
   box-sizing: border-box;
 }
 
-/* Fondo sólido del lienzo. Al no definir fondo en html, el color de body
-   se propaga al lienzo completo del webview y no parpadea al hacer scroll. */
 body {
   margin: 0;
   background-color: var(--glass-page);
@@ -68,9 +56,7 @@ body {
   margin: 0 auto;
 }
 
-/* Material Liquid Glass compartido.
-   Relleno plano + un brillo estático. backface-visibility y translateZ(0)
-   fuerzan su propia capa de composición y evitan el parpadeo al hacer scroll. */
+/* Flat background, to avoid scroll flashing */
 .front,
 .back {
   position: relative;
@@ -87,7 +73,7 @@ body {
   transform: translateZ(0);
 }
 
-/* FRONT · palabra + IPA + audio */
+/* FRONT */
 .front {
   display: flex;
   align-items: center;
@@ -116,7 +102,7 @@ body {
   color: var(--glass-text-secondary);
 }
 
-/* BACK · palabra, traducción, imagen, oración, nota y url */
+/* BACK  */
 .back {
   display: block;
   padding: 24px;
@@ -125,7 +111,7 @@ body {
   color: var(--glass-text);
 }
 
-/* Palabra principal: primera línea del reverso */
+/* Principal word, firts line on the verse */
 .back::first-line {
   font-size: 32px;
   font-weight: 700;
@@ -141,13 +127,12 @@ body {
   color: var(--glass-text-secondary);
 }
 
-/* Audio del reverso */
+/* Audio back */
 .back .Audio,
 .back .replay-button {
   margin: 4px 0;
 }
 
-/* Separadores tenues */
 hr {
   border: none;
   height: 1px;
@@ -155,7 +140,7 @@ hr {
   background: var(--glass-border);
 }
 
-/* Imagen como ventana de vidrio */
+/* Imagen  */
 .back img,
 .front img {
   display: block;
@@ -167,13 +152,13 @@ hr {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
 }
 
-/* Traducción de la palabra (extensión → {{Definicion}}) */
+/* Word translation (plugin ankimine → {{Definicion}}) */
 .card span.chn_tran {
   color: var(--glass-accent) !important;
   font-weight: 600;
 }
 
-/* Traducción de la oración */
+/* Sentence translation (plugin ankimine) */
 .card span.chn_sent {
   color: var(--glass-text-secondary) !important;
   font-style: italic;
@@ -184,7 +169,7 @@ hr {
   color: inherit !important;
 }
 
-/* Resaltados del sistema AnkiMine */
+/* Highlight AnkiMine system */
 .back b,
 .back strong {
   color: var(--glass-accent);
@@ -222,7 +207,7 @@ hr {
   color: var(--glass-text-secondary);
 }
 
-/* URL / diccionario */
+/* URL / dictionary */
 .back .url {
   margin-top: 16px;
   font-size: 12px;
@@ -237,8 +222,6 @@ hr {
   border-bottom: 1px solid currentColor;
 }
 
-/* Botón de audio: pieza de vidrio integrada.
-   Solo se anima opacity para no repintar la tarjeta al pulsar. */
 .replay-button {
   position: relative;
   display: inline-flex;
@@ -313,7 +296,6 @@ hr {
   background: var(--glass-page);
 }
 
-/* En oscuro el texto claro no necesita refuerzo */
 .nightMode .front,
 .nightMode .back {
   text-shadow: none;
