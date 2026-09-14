@@ -1,16 +1,17 @@
 /* created by edenilsonlr https://github.com/Edenilson-LR/Anki-Templates */
 /* AnkiMine · Liquid Glass — CSS puro, sin dependencias.
    Tokens espejo del sistema de diseño Penpot (Glass/light · Glass/dark).
+   Página sólida con el color por defecto de Anki; el vidrio vive solo en
+   la tarjeta (sin backdrop-filter ni gradientes) para evitar parpadeos.
    Compatible con front.html / back.html sin modificarlos. */
 
 :root {
   /* Material · Glass/light */
-  --glass-bg: rgba(255, 255, 255, 0.16);
-  --glass-bg-secondary: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.35);
-  --glass-highlight: rgba(255, 255, 255, 0.22);
-  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  --glass-blur: 14px;
+  --glass-bg: rgba(244, 247, 250, 0.88);
+  --glass-bg-secondary: rgba(240, 243, 247, 0.70);
+  --glass-border: rgba(26, 29, 33, 0.10);
+  --glass-highlight: rgba(255, 255, 255, 0.70);
+  --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
   --glass-radius: 20px;
   --glass-radius-panel: 14px;
   --glass-radius-pill: 999px;
@@ -24,8 +25,8 @@
   --glass-learned: #0E7C74;
   --glass-target: #7A5CB8;
 
-  /* Lienzo */
-  --glass-page: #E8EAED;
+  /* Lienzo (color por defecto de Anki) */
+  --glass-page: #FFFFFF;
 
   /* Compatibilidad con el sistema AnkiMine */
   --text--color: #1A1D21;
@@ -42,18 +43,21 @@
   box-sizing: border-box;
 }
 
-/* Lienzo con luz ambiental recreada solo con gradientes */
+/* Lienzo sólido: el vidrio vive solo en la tarjeta.
+   body comparte el color de la tarjeta y, al no definir fondo en html,
+   ese color se propaga al lienzo completo del webview (sin parpadeos). */
+body {
+  margin: 0;
+  background-color: var(--glass-page);
+}
+
 .card {
-  min-height: 100vh;
   padding: 24px 16px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: var(--glass-text);
-  background-color: var(--glass-page);
-  background-image:
-    radial-gradient(circle at 18% 12%, rgba(32, 178, 170, 0.20), transparent 42%),
-    radial-gradient(circle at 84% 86%, rgba(185, 167, 217, 0.26), transparent 46%);
+  background: var(--glass-page);
 }
 
 .flashcard {
@@ -61,22 +65,18 @@
   margin: 0 auto;
 }
 
-/* Material Liquid Glass compartido */
+/* Material Liquid Glass compartido.
+   Fondo plano (sin gradientes) para que el webview no repinte al hacer
+   scroll; el efecto vidrio lo dan el tinte, el borde y la sombra. */
 .front,
 .back {
   position: relative;
   border: 1px solid var(--glass-border);
   border-radius: var(--glass-radius);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 42%),
-    linear-gradient(135deg, var(--glass-highlight), rgba(255, 255, 255, 0.04)),
-    var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  backdrop-filter: blur(var(--glass-blur));
+  background-color: var(--glass-bg);
   box-shadow:
     var(--glass-shadow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.30);
-  overflow: hidden;
+    inset 0 1px 0 var(--glass-highlight);
 }
 
 /* FRONT · palabra + IPA + audio */
@@ -142,7 +142,7 @@ hr {
   border: none;
   height: 1px;
   margin: 16px 0;
-  background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+  background: var(--glass-border);
 }
 
 /* Imagen como ventana de vidrio */
@@ -238,17 +238,19 @@ hr {
   flex-shrink: 0;
   border: 1px solid var(--glass-border);
   border-radius: var(--glass-radius-pill);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.10));
+  background-color: var(--glass-bg-secondary);
   box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    0 2px 8px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 var(--glass-highlight);
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.15s ease, background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: opacity 0.12s ease;
 }
 
 .replay-button:active {
-  transform: scale(0.96);
+  opacity: 0.85;
 }
 
 .replay-button svg {
@@ -273,21 +275,13 @@ hr {
   display: inline-block;
 }
 
-/* Sin soporte de backdrop-filter: material más sólido, misma estética */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .front,
-  .back {
-    background: rgba(255, 255, 255, 0.86);
-  }
-}
-
 /* NIGHT MODE · Glass/dark */
 .nightMode {
-  --glass-bg: rgba(27, 26, 46, 0.55);
-  --glass-bg-secondary: rgba(42, 39, 64, 0.40);
-  --glass-border: rgba(255, 255, 255, 0.22);
-  --glass-highlight: rgba(255, 255, 255, 0.16);
-  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  --glass-bg: rgba(58, 57, 74, 0.85);
+  --glass-bg-secondary: rgba(58, 57, 74, 0.70);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-highlight: rgba(255, 255, 255, 0.10);
+  --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   --glass-text: #EDF2F7;
   --glass-text-secondary: #C9B8E1;
   --glass-accent: #40E0D0;
@@ -295,7 +289,7 @@ hr {
   --glass-lilac: #9B7FC7;
   --glass-learned: #40E0D0;
   --glass-target: #C9A7F0;
-  --glass-page: #121417;
+  --glass-page: #2F2F31;
   --text--color: #EDF2F7;
   --stroke--color: #9B7FC7;
   --night--card: #1B1A2E;
@@ -304,29 +298,7 @@ hr {
 }
 
 .nightMode .card {
-  background-color: var(--glass-page);
-  background-image:
-    radial-gradient(circle at 18% 12%, rgba(64, 224, 208, 0.16), transparent 45%),
-    radial-gradient(circle at 82% 86%, rgba(155, 127, 199, 0.24), transparent 48%);
-}
-
-.nightMode .front,
-.nightMode .back {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 42%),
-    linear-gradient(135deg, rgba(155, 127, 199, 0.30), rgba(64, 224, 208, 0.08)),
-    var(--glass-bg);
-}
-
-.nightMode .replay-button {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
-}
-
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .nightMode .front,
-  .nightMode .back {
-    background: rgba(27, 26, 46, 0.92);
-  }
+  background: var(--glass-page);
 }
 
 /* RESPONSIVE */
@@ -334,11 +306,6 @@ hr {
   .card {
     padding: 16px 10px;
     font-size: 15px;
-  }
-
-  .front,
-  .back {
-    --glass-blur: 8px;
   }
 
   .flashcard {
