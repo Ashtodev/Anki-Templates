@@ -1,0 +1,356 @@
+/* created by edenilsonlr https://github.com/Edenilson-LR/Anki-Templates */
+/* AnkiMine · Liquid Glass 2 — CSS puro, sin dependencias.
+   Compatible con front.html / back.html sin modificarlos.
+
+   Fondo sólido: claro #855387 · oscuro #463551.
+   El vidrio vive solo en la tarjeta y se recrea con relleno translúcido +
+   un único brillo estático (sin backdrop-filter, que es lo que provocaba
+   parpadeos). La tarjeta se promueve a su propia capa para que el webview
+   de Anki no la repinte al hacer scroll. */
+
+:root {
+  /* Lienzo sólido */
+  --glass-page: #855387;
+
+  /* Material · Glass/light (tarjeta oscura para que el texto blanco resalte) */
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-bg-secondary: rgba(255, 255, 255, 0.10);
+  --glass-sheen: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(255, 255, 255, 0.40);
+  --glass-highlight: rgba(255, 255, 255, 0.55);
+  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  --glass-radius: 20px;
+  --glass-radius-panel: 14px;
+  --glass-radius-pill: 999px;
+
+  /* Texto y acentos */
+  --glass-text: #FFFFFF;
+  --glass-text-secondary: #F0DFF5;
+  --glass-accent: #A9F5EC;
+  --glass-url: #B7F0E8;
+  --glass-lilac: #E3D0F2;
+  --glass-learned: #A9F5EC;
+  --glass-target: #E7D2FF;
+
+  /* Compatibilidad con el sistema AnkiMine */
+  --text--color: #FFFFFF;
+  --stroke--color: #E3D0F2;
+  --night--card: #463551;
+  --turquesa-url: #B7F0E8;
+  --turquesa-field: #A9F5EC;
+}
+
+.card,
+.card *,
+.card *::before,
+.card *::after {
+  box-sizing: border-box;
+}
+
+/* Fondo sólido del lienzo. Al no definir fondo en html, el color de body
+   se propaga al lienzo completo del webview y no parpadea al hacer scroll. */
+body {
+  margin: 0;
+  background-color: var(--glass-page);
+}
+
+.card {
+  padding: 24px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--glass-text);
+  background: var(--glass-page);
+}
+
+.flashcard {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Material Liquid Glass compartido.
+   Relleno plano + un brillo estático. backface-visibility y translateZ(0)
+   fuerzan su propia capa de composición y evitan el parpadeo al hacer scroll. */
+.front,
+.back {
+  position: relative;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  background-color: var(--glass-bg);
+  background-image: linear-gradient(160deg, var(--glass-sheen), rgba(255, 255, 255, 0) 58%);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-highlight);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* FRONT · palabra + IPA + audio */
+.front {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  min-height: 84px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.front .Audio {
+  flex: 0 0 auto;
+}
+
+/* La IPA de front.html va como texto suelto; estas reglas la cubren
+   si el campo incluye <i>/<em>/<span class="ipa">. */
+.front i,
+.front em,
+.front .ipa {
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--glass-text-secondary);
+}
+
+/* BACK · palabra, traducción, imagen, oración, nota y url */
+.back {
+  display: block;
+  padding: 24px;
+  min-height: 420px;
+  font-size: 16px;
+  color: var(--glass-text);
+}
+
+/* Palabra principal: primera línea del reverso */
+.back::first-line {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.back > .ipa {
+  display: block;
+  margin: 4px 0 8px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--glass-text-secondary);
+}
+
+/* Audio del reverso */
+.back .Audio,
+.back .replay-button {
+  margin: 4px 0;
+}
+
+/* Separadores tenues */
+hr {
+  border: none;
+  height: 1px;
+  margin: 16px 0;
+  background: var(--glass-border);
+}
+
+/* Imagen como ventana de vidrio */
+.back img,
+.front img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 8px 0;
+  border-radius: var(--glass-radius-panel);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+/* Traducción de la palabra (extensión → {{Definicion}}) */
+.card span.chn_tran {
+  color: var(--glass-accent) !important;
+  font-weight: 600;
+}
+
+/* Traducción de la oración */
+.card span.chn_sent {
+  color: var(--glass-text-secondary) !important;
+  font-style: italic;
+}
+
+.card span.chn_tran *,
+.card span.chn_sent * {
+  color: inherit !important;
+}
+
+/* Resaltados del sistema AnkiMine */
+.back b,
+.back strong {
+  color: var(--glass-accent);
+  font-weight: 600;
+}
+
+.back a:not(.replay-button) {
+  color: var(--glass-url);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.learned,
+.target,
+.pronunciation,
+.secondary {
+  padding: 1px 7px;
+  border-radius: var(--glass-radius-pill);
+  font-size: 0.86em;
+  font-weight: 600;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-secondary);
+}
+
+.learned {
+  color: var(--glass-learned);
+}
+
+.target {
+  color: var(--glass-target);
+}
+
+.pronunciation,
+.secondary {
+  color: var(--glass-text-secondary);
+}
+
+/* URL / diccionario */
+.back .url {
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--glass-url);
+  word-break: break-word;
+}
+
+.back .url a {
+  color: var(--glass-url);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+/* Botón de audio: pieza de vidrio integrada.
+   Solo se anima opacity para no repintar la tarjeta al pulsar. */
+.replay-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius-pill);
+  background-color: var(--glass-bg-secondary);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 var(--glass-highlight);
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: opacity 0.12s ease;
+}
+
+.replay-button:active {
+  opacity: 0.85;
+}
+
+.replay-button svg {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-40%, -50%);
+}
+
+.replay-button svg circle {
+  display: none;
+}
+
+.replay-button svg path {
+  fill: var(--glass-accent);
+  transform: none;
+}
+
+.Audio {
+  display: inline-block;
+}
+
+/* NIGHT MODE · Glass/dark */
+.nightMode {
+  --glass-page: #463551;
+  --glass-bg: rgba(255, 255, 255, 0.10);
+  --glass-bg-secondary: rgba(255, 255, 255, 0.08);
+  --glass-sheen: rgba(255, 255, 255, 0.16);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-highlight: rgba(255, 255, 255, 0.20);
+  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.40);
+  --glass-text: #F2EEFA;
+  --glass-text-secondary: #CDBDE0;
+  --glass-accent: #40E0D0;
+  --glass-url: #7FE7DC;
+  --glass-lilac: #9B7FC7;
+  --glass-learned: #40E0D0;
+  --glass-target: #C9A7F0;
+  --text--color: #F2EEFA;
+  --stroke--color: #9B7FC7;
+  --night--card: #463551;
+  --turquesa-url: #7FE7DC;
+  --turquesa-field: #40E0D0;
+}
+
+.nightMode .card {
+  background: var(--glass-page);
+}
+
+/* En oscuro el texto claro no necesita refuerzo */
+.nightMode .front,
+.nightMode .back {
+  text-shadow: none;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 600px) {
+  .card {
+    padding: 16px 10px;
+    font-size: 15px;
+  }
+
+  .flashcard {
+    max-width: 95vw;
+  }
+
+  .front {
+    padding: 18px;
+    font-size: 24px;
+  }
+
+  .back {
+    padding: 18px;
+    min-height: auto;
+  }
+
+  .back::first-line {
+    font-size: 26px;
+  }
+
+  .replay-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .replay-button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
