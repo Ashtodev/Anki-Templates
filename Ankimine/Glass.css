@@ -1,0 +1,371 @@
+/* created by edenilsonlr https://github.com/Edenilson-LR/Anki-Templates */
+/* AnkiMine · Liquid Glass — CSS puro, sin dependencias.
+   Tokens espejo del sistema de diseño Penpot (Glass/light · Glass/dark).
+   Compatible con front.html / back.html sin modificarlos. */
+
+:root {
+  /* Material · Glass/light */
+  --glass-bg: rgba(255, 255, 255, 0.16);
+  --glass-bg-secondary: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --glass-highlight: rgba(255, 255, 255, 0.22);
+  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  --glass-blur: 14px;
+  --glass-radius: 20px;
+  --glass-radius-panel: 14px;
+  --glass-radius-pill: 999px;
+
+  /* Texto y acentos */
+  --glass-text: #1A1D21;
+  --glass-text-secondary: #5B6470;
+  --glass-accent: #20B2AA;
+  --glass-url: #0E7C74;
+  --glass-lilac: #B9A7D9;
+  --glass-learned: #0E7C74;
+  --glass-target: #7A5CB8;
+
+  /* Lienzo */
+  --glass-page: #E8EAED;
+
+  /* Compatibilidad con el sistema AnkiMine */
+  --text--color: #1A1D21;
+  --stroke--color: #B9A7D9;
+  --night--card: #1B1A2E;
+  --turquesa-url: #0E7C74;
+  --turquesa-field: #0E7C74;
+}
+
+.card,
+.card *,
+.card *::before,
+.card *::after {
+  box-sizing: border-box;
+}
+
+/* Lienzo con luz ambiental recreada solo con gradientes */
+.card {
+  min-height: 100vh;
+  padding: 24px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--glass-text);
+  background-color: var(--glass-page);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(32, 178, 170, 0.20), transparent 42%),
+    radial-gradient(circle at 84% 86%, rgba(185, 167, 217, 0.26), transparent 46%);
+}
+
+.flashcard {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Material Liquid Glass compartido */
+.front,
+.back {
+  position: relative;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 42%),
+    linear-gradient(135deg, var(--glass-highlight), rgba(255, 255, 255, 0.04)),
+    var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30);
+  overflow: hidden;
+}
+
+/* FRONT · palabra + IPA + audio */
+.front {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  min-height: 84px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.front .Audio {
+  flex: 0 0 auto;
+}
+
+.front i,
+.front em,
+.front .ipa {
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--glass-text-secondary);
+}
+
+/* BACK · palabra, traducción, imagen, oración, nota y url */
+.back {
+  display: block;
+  padding: 24px;
+  min-height: 420px;
+  font-size: 16px;
+  color: var(--glass-text);
+}
+
+/* Palabra principal: primera línea del reverso */
+.back::first-line {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.back > .ipa {
+  display: block;
+  margin: 4px 0 8px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--glass-text-secondary);
+}
+
+/* Audio del reverso */
+.back .Audio,
+.back .replay-button {
+  margin: 4px 0;
+}
+
+/* Separadores como luz tenue, no como líneas duras */
+hr {
+  border: none;
+  height: 1px;
+  margin: 16px 0;
+  background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+}
+
+/* Imagen como ventana de vidrio */
+.back img,
+.front img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 8px 0;
+  border-radius: var(--glass-radius-panel);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Traducción de la palabra (extensión → {{Definicion}}) */
+.card span.chn_tran {
+  color: var(--glass-accent) !important;
+  font-weight: 600;
+}
+
+/* Traducción de la oración */
+.card span.chn_sent {
+  color: var(--glass-text-secondary) !important;
+  font-style: italic;
+}
+
+.card span.chn_tran *,
+.card span.chn_sent * {
+  color: inherit !important;
+}
+
+/* Resaltados del sistema AnkiMine */
+.back b,
+.back strong {
+  color: var(--glass-accent);
+  font-weight: 600;
+}
+
+.back a:not(.replay-button) {
+  color: var(--glass-url);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.learned,
+.target,
+.pronunciation,
+.secondary {
+  padding: 1px 7px;
+  border-radius: var(--glass-radius-pill);
+  font-size: 0.86em;
+  font-weight: 600;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-secondary);
+}
+
+.learned {
+  color: var(--glass-learned);
+}
+
+.target {
+  color: var(--glass-target);
+}
+
+.pronunciation,
+.secondary {
+  color: var(--glass-text-secondary);
+}
+
+/* URL / diccionario */
+.back .url {
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--glass-url);
+  word-break: break-word;
+}
+
+.back .url a {
+  color: var(--glass-url);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+/* Botón de audio: pieza de vidrio integrada */
+.replay-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius-pill);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.10));
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.replay-button:active {
+  transform: scale(0.96);
+}
+
+.replay-button svg {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-40%, -50%);
+}
+
+.replay-button svg circle {
+  display: none;
+}
+
+.replay-button svg path {
+  fill: var(--glass-accent);
+  transform: none;
+}
+
+.Audio {
+  display: inline-block;
+}
+
+/* Sin soporte de backdrop-filter: material más sólido, misma estética */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .front,
+  .back {
+    background: rgba(255, 255, 255, 0.86);
+  }
+}
+
+/* NIGHT MODE · Glass/dark */
+.nightMode {
+  --glass-bg: rgba(27, 26, 46, 0.55);
+  --glass-bg-secondary: rgba(42, 39, 64, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-highlight: rgba(255, 255, 255, 0.16);
+  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  --glass-text: #EDF2F7;
+  --glass-text-secondary: #C9B8E1;
+  --glass-accent: #40E0D0;
+  --glass-url: #7FE7DC;
+  --glass-lilac: #9B7FC7;
+  --glass-learned: #40E0D0;
+  --glass-target: #C9A7F0;
+  --glass-page: #121417;
+  --text--color: #EDF2F7;
+  --stroke--color: #9B7FC7;
+  --night--card: #1B1A2E;
+  --turquesa-url: #7FE7DC;
+  --turquesa-field: #40E0D0;
+}
+
+.nightMode .card {
+  background-color: var(--glass-page);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(64, 224, 208, 0.16), transparent 45%),
+    radial-gradient(circle at 82% 86%, rgba(155, 127, 199, 0.24), transparent 48%);
+}
+
+.nightMode .front,
+.nightMode .back {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    linear-gradient(135deg, rgba(155, 127, 199, 0.30), rgba(64, 224, 208, 0.08)),
+    var(--glass-bg);
+}
+
+.nightMode .replay-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nightMode .front,
+  .nightMode .back {
+    background: rgba(27, 26, 46, 0.92);
+  }
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 600px) {
+  .card {
+    padding: 16px 10px;
+    font-size: 15px;
+  }
+
+  .front,
+  .back {
+    --glass-blur: 8px;
+  }
+
+  .flashcard {
+    max-width: 95vw;
+  }
+
+  .front {
+    padding: 18px;
+    font-size: 24px;
+  }
+
+  .back {
+    padding: 18px;
+    min-height: auto;
+  }
+
+  .back::first-line {
+    font-size: 26px;
+  }
+
+  .replay-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .replay-button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
