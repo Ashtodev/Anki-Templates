@@ -1,0 +1,109 @@
+:root {
+  --light--background: #c0c0c0;
+  --card--bg-light: #bab8aa;
+  --card--text-light: #545249;
+  --card--shadow-light: rgba(132, 131, 123, 0.6);
+  --night--background: rgba(0, 0, 0, 0.4724);
+  --night--background-solid: #141414;
+  --card--bg-dark: #262623;
+  --card--text-dark: #84837b;
+  --card--shadow-dark: rgba(84, 82, 73, 0.6);
+  --card--radius: 10px;
+  --card--font: 'Sofia Sans Extra Condensed', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  background: var(--light--background);
+  font-family: var(--card--font);
+}
+
+.nightMode .card {
+  background: var(--night--background-solid);
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 200px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  min-height: 200px;
+  backface-visibility: hidden;
+  padding: 20px;
+  border-radius: var(--card--radius);
+  box-shadow: 8px 4px 3px var(--card--shadow-light);
+  background-color: var(--card--bg-light);
+  color: var(--card--text-light);
+  font-family: var(--card--font);
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.card-back {
+  box-shadow: 8px 4px 4px var(--card--shadow-light);
+}
+
+.nightMode .card-front,
+.nightMode .card-back {
+  background-color: var(--card--bg-dark);
+  color: var(--card--text-dark);
+  box-shadow: 8px 4px 3px var(--card--shadow-dark);
+}
+
+.nightMode .card-back {
+  box-shadow: 8px 4px 4px rgba(84, 82, 73, 0.2);
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+  .card-wrapper {
+    padding: 10px;
+    min-height: auto;
+  }
+
+  .card-inner {
+    max-width: 100%;
+    min-height: 150px;
+  }
+
+  .card-front,
+  .card-back {
+    min-height: 150px;
+    padding: 15px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-wrapper {
+    padding: 5px;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 12px;
+    font-size: 20px;
+  }
+}

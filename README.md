@@ -1,18 +1,25 @@
 ## English
 
-Hi, Welcome
-Here you will find anki templates that you can add to your anki templates
-each template has the name in the folder, just you need to copy and paste
-the information inside of the files, you can mody the information inside 
-the symbol "{}" to adapt your template
+Hi, welcome!
+
+Here you will find different Anki templates that you can add to your personal Anki collection.
+
+Each template is identified by its name in the corresponding folder. You just need to copy and paste the contents of the files into your Anki template.
+
+You can modify the information inside the `{}` symbols to adapt the template to your needs.
+
+
     
 ## Español
 
-Hola, bienvenido
-Aqui puedes encontrar diferentes plantillas de anki que puedes agregar a tus plantillas personales,
-cada plantilla esta identificada por nombre en las carpetas, solamente tienes que copiar y pegar 
-cada archivo, igualmente puedes modificar los campos dentro del simbolo "{}" 
-para adaptarlo a tu campos.
+Hola, bienvenido.
+
+Aquí puedes encontrar diferentes plantillas de Anki que puedes agregar a tus plantillas personales.
+
+Cada plantilla está identificada por su nombre en la carpeta correspondiente. Solamente tienes que copiar y pegar el contenido de los archivos en tu plantilla de Anki.
+
+También puedes modificar los campos dentro de los símbolos `{}` para adaptarlos a tus necesidades.
+
 
 # Ankimine
 <img width="406" height="200" alt="Image" src="https://github.com/user-attachments/assets/3b0fe9a0-0a97-4610-8e8b-6cded82dde43" />
@@ -38,3 +45,16 @@ para adaptarlo a tu campos.
 <img width="400" height="500" alt="Image" src="https://github.com/user-attachments/assets/27ff3242-90f6-4f80-ae8b-f55eda9a858c" />
 
 <img width="400" height="500" alt="Image" src="https://github.com/user-attachments/assets/7a766ce0-bf1e-4883-b2cc-4d72fcae5b24" />
+
+Third-Party Licenses
+--------------------
+
+Some styles in this project are derived from or adapted from
+Refold and/or code originally provided by Ankitects Pty Ltd
+and contributors.
+
+Those portions remain licensed under the GNU Affero General
+Public License, version 3 or later (AGPL-3.0-or-later).
+
+The original license and copyright notices are preserved where
+applicable.
